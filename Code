@@ -63,6 +63,13 @@ from math import *
 def f(t,y):
     return (1/sqrt(2*pi))*exp(-(t**2)/2)
 
+def F(qp):
+    return integrale_simpson(f,qp, 10, 100)
+#Test of F with values of the given table
+print(round(F(3.0902),4))
+print(round(F(1.165),4))
+
+
 #just in case
 def euler (f, t0, tf, y0, n):
     h = (tf-t0)/n  # The step
