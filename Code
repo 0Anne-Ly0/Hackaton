@@ -63,6 +63,7 @@ from math import *
 def f(t,y):
     return (1/sqrt(2*pi))*exp(-(t**2)/2)
 
+#just in case
 def euler (f, t0, tf, y0, n):
     h = (tf-t0)/n  # The step
     T = [t0] # The future subdivision
