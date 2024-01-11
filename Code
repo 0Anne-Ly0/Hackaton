@@ -115,6 +115,23 @@ plt.legend()
 plt.show()
 
 
+#Cumulative distribution
+# Number of points used 
+N = 1000
+  
+# normal distribution 
+point = np.random.randn(N) 
+  
+# sort the data in ascending order 
+x_values = np.sort(point) 
+  
+# get the cdf values of y 
+y_values = np.arange(N) / float(N) 
+  
+# Plot the standard normal distribution
+plt.plot(x_values, y_values, label='Cumulative distribution')
+
+
 
 
 #BONUS#
