@@ -6,11 +6,12 @@ def dichotomie(f, a, b, e):
             b = m
         else:
             a = m
-    return m
+    return (a+b)/2
 
 #Newton
-def Newton(f, df, a, b, p):
-    while abs(a - b) >= p :
+def Newton(f, df, a, b, e):
+    b= a- f(a)/df(a)
+    while abs(a - b) >= e :
         a, b = b, b - f(b)/df(b)
     return b
 
@@ -46,7 +47,13 @@ def df(x):
 print(df(3))
 
 #Test dichotonomy
-print(dichotomie(f, -3, 6, 0.001))
+print(dichotomie(f, -3, 6, 100))
 
 #Test Newton
-print(Newton(f, df, -3, 7, 0.01))
+print(Newton(f, df, -3, 6, 100))
+
+#Test rectangle
+print(integrale_rectangle(f, 3, 10, 55))
+
+#Test simpson
+print(integrale_simpson(f, 3, 10, 55))
