@@ -86,6 +86,7 @@ def euler (f, t0, tf, y0, n):
         Y.append(y)
     return T, Y
 
+
 ##GRAPH##
 import numpy as np
 import matplotlib.pyplot as plt
@@ -118,8 +119,6 @@ plt.show()
 #Cumulative distribution
 # Number of points used 
 N = 1000
-  
-# normal distribution 
 point = np.random.randn(N) 
   
 # sort the data in ascending order 
