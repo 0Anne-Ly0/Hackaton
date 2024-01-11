@@ -80,6 +80,34 @@ def euler (f, t0, tf, y0, n):
         Y.append(y)
     return T, Y
 
+##GRAPH##
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Standard normal probability density function (pdf)
+def standard_normal_pdf(x):
+    return np.exp(-x**2 / 2) / np.sqrt(2 * np.pi)
+
+# Generate x values for the plot
+x_values = np.linspace(-4, 4, 1000)
+# Calculate corresponding y values using the standard normal pdf
+y_values = standard_normal_pdf(x_values)
+
+# Plot the standard normal distribution
+plt.plot(x_values, y_values, label='Standard Normal Distribution')
+
+# Mark the quantile on the plot
+plt.scatter([quantile_value], [standard_normal_pdf(quantile_value)], color='red', label=f'Quantile at P = {p_hundredths + p_thousandths:.3f}')
+
+# Add labels and legend
+plt.xlabel('Z (Standard Deviations)')
+plt.ylabel('Probability Density Function (PDF)')
+plt.title('Standard Normal Distribution with Quantile')
+plt.legend()
+
+# Display the plot
+plt.show()
+
 
 
 
