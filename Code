@@ -37,3 +37,16 @@ def integrale_simpson(f,a,b,n):
     
     s =f(a) +f(b)+4*sum_mk +2*sum_xk
     return h/6 *s
+
+def f(x):
+    return 3*x**2+2*x-1
+print(f(3))
+def df(x):
+    return 6*x+2
+print(df(3))
+
+#Test dichotonomy
+print(dichotomie(f, -3, 6, 0.001))
+
+#Test Newton
+print(Newton(f, df, -3, 7, 0.01))
