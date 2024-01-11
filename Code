@@ -14,3 +14,10 @@ def Newton(f, df, a, b, p):
         a, b = b, b - f(b)/df(b)
     return b
 
+#Rectangle
+def integrale_rectangle(f, a, b, n):
+    h=(b-a)/n
+    sum=0    #represents the sum
+    for k in range(n):
+        sum+=f(a+k*h)  #f(xk)
+    return h*sum
