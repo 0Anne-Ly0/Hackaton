@@ -81,3 +81,66 @@ def euler (f, t0, tf, y0, n):
         T.append(t)
         Y.append(y)
     return T, Y
+
+
+
+
+#BONUS#
+#Student's Law
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy import stats as st
+
+# We want the distributions to appear on the plot from -3 to 3
+x = np.linspace(-3, 3, 1000)
+# The t-distribution for 1 degree of freedom
+dof = 1
+pdf_1 = st.t.pdf(x, dof)
+# The t-distribution for 3 degrees of freedom
+dof = 3
+pdf_3 = st.t.pdf(x, dof)
+# The t-distribution for 8 degrees of freedom
+dof = 8
+pdf_8 = st.t.pdf(x, dof)
+# The t-distribution for 30 degrees of freedom
+dof = 30
+pdf_30 = st.t.pdf(x, dof)
+
+# We want the distributions to appear on the plot from -3 to 3
+x = np.linspace(-3, 3, 1000)
+# The standard normal distribution
+pdf_norm = st.norm.pdf(x)
+
+# Set the seed so that we get the same random numbers each time this code runs
+np.random.seed(20230811)
+# Sample 1000 random numbers from the t-distribution with dof = 30
+random_numbers = np.random.standard_t(30, 1000)
+
+# As dof ≥ 3, the mean and standard deviation should be approximately 0 and 1
+print(f'This should be close to zero: {random_numbers.mean()}')
+print(f'This should be close to one: {random_numbers.std()}')
+
+# Create plot
+ax = plt.axes()
+# Random numbers
+label = '1000 Random Numbers'
+ax.hist(random_numbers, density=True, label=label, color='gray', alpha=0.3)
+# Probability density functions (PDFs)
+ax.plot(x, pdf_norm, 'k', label='Standard Normal Distribution')
+ax.plot(x, pdf_30, label='$t$-distribution, dof = 30')
+ax.plot(x, pdf_8, label='$t$-distribution, dof = 8')
+ax.plot(x, pdf_3, label='$t$-distribution, dof = 3')
+ax.plot(x, pdf_1, label='$t$-distribution, dof = 1')
+# Mean
+ax.axvline(0, 0, st.norm.pdf(0) / 0.45, c='k', ls='--', label='Mean')
+# Axes
+ax.set_ylim([0, 0.45])
+ax.set_xlim([-3, 3])
+# Format
+title = """Probability Density Functions (PDFs) of $t$-Distributions
+and the Standard Normal Distribution"""
+ax.set_title(title)
+ax.set_ylabel('Relative Likelihood')
+ax.set_xlabel('Distance of the Value of a Random Variable from the Mean')
+ax.legend(frameon=False, fontsize='x-small')
+plt.show()
