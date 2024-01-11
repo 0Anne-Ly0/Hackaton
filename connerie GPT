@@ -1,0 +1,72 @@
+import numpy as np
+
+# Example usage:
+values = np.array([1, 2, 3, 4, 5])
+probabilities = np.array([0.1, 0.3, 0.6, 0.9, 1.0])
+
+target_probability = 0.75
+# Quantile function using dichotomy (bisection) method
+def quantile_dichotomy(probability, values, probabilities):
+    left, right = min(values), max(values)
+    tol = 1e-6
+    max_iter = 100
+
+    for _ in range(max_iter):
+        guess = (left + right) / 2
+        cdf_guess = np.interp(guess, values, probabilities)
+
+        if abs(cdf_guess - probability) < tol:
+            return guess
+
+        if cdf_guess > probability:
+            right = guess
+        else:
+            left = guess
+
+    raise ValueError("Dichotomy method did not converge.")
+    
+# Quantile using dichotomy
+quantile_dicho = quantile_dichotomy(target_probability, values, probabilities)
+print(f"Dichotomy method: {quantile_dicho}")
+
+# Quantile function using rectangular method
+def quantile_rectangular(probability, values, probabilities):
+    width = np.diff(values)
+    cumulative_probabilities = np.cumsum(probabilities[:-1] * width)
+    index = np.searchsorted(cumulative_probabilities, probability)
+    return values[index]
+
+# Quantile using rectangular method
+quantile_rect = quantile_rectangular(target_probability, values, probabilities)
+print(f"Rectangular method: {quantile_rect}")
+
+# Quantile function using Newton's method
+def quantile_newton(probability, values, probabilities, tol=1e-6, max_iter=100):
+    cdf = lambda x: np.interp(x, values, probabilities)
+    inv_cdf_derivative = lambda x: np.gradient(cdf(values), values)
+
+    guess = np.median(values)  # Initial guess
+    for _ in range(max_iter):
+        x_next = guess - (cdf(guess) - probability) / inv_cdf_derivative(guess)
+        if abs(x_next - guess) < tol:
+            return x_next
+        guess = x_next
+
+    raise ValueError("Newton's method did not converge.")
+    
+# Quantile using Newton's method
+quantile_newt = quantile_newton(target_probability, values, probabilities)
+print(f"Newton's method: {quantile_newt}")
+
+# Quantile function using Simpson's method
+def quantile_simpson(probability, values, probabilities):
+    cdf = np.cumsum(probabilities * np.diff(values))
+    index = np.searchsorted(cdf, probability)
+
+    a, b = values[index], values[index + 1]
+    cdf_a, cdf_b = cdf[index], cdf[index + 1]
+
+    return a + (probability - cdf_a) * (b - a) / (cdf_b - cdf_a)
+# Quantile using Simpson's method
+quantile_simp = quantile_simpson(target_probability, values, probabilities)
+print(f"Simpson's method: {quantile_simp}")
