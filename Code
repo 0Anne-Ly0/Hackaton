@@ -63,8 +63,14 @@ from math import *
 def f(x):
     return (1/(2*pi)**0.5)*exp(-(x**2)/2)
 
-def F(qp):
-    return integrale_simpson(f,-100, qp, 100)
+def quantile(P):
+    def F(x):
+        return integrale_simpson(f,-10, x, 100)-P
+    return abs(dichotomie(F, -5, 5, 0.0001))
+#print(quantile(0.237))
+
+
+
 
 
 
