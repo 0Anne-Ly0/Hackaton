@@ -60,8 +60,8 @@ print(integrale_simpson(g, 3, 10, 55))
 #implementation of f
 from math import *
 
-def f(t,y):
-    return (1/sqrt(2*pi))*exp(-(t**2)/2)
+def f(x):
+    return (1/(2*pi)**0.5)*exp(-(x**2)/2)
 
 def F(qp):
     return integrale_simpson(f,-100, qp, 100)
