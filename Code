@@ -38,24 +38,24 @@ def integrale_simpson(f,a,b,n):
     s =f(a) +f(b)+4*sum_mk +2*sum_xk
     return h/6 *s
 
-def f(x):
+def g(x):
     return 3*x**2+2*x-1
-print(f(3))
-def df(x):
+print(g(3))
+def dg(x):
     return 6*x+2
-print(df(3))
+print(dg(3))
 
 #Test dichotonomy
-print(dichotomie(f, -3, 6, 0.001))
+print(dichotomie(g, -3, 6, 0.001))
 
 #Test Newton
-print(Newton(f, df, -3, 6, 100))
+print(Newton(g, dg, -3, 6, 100))
 
 #Test rectangle
-print(integrale_rectangle(f, 3, 10, 55))
+print(integrale_rectangle(g, 3, 10, 55))
 
 #Test simpson
-print(integrale_simpson(f, 3, 10, 55))
+print(integrale_simpson(g, 3, 10, 55))
 
 #implementation of f
 from math import *
