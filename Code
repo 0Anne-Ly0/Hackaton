@@ -63,18 +63,9 @@ from math import *
 def f(t,y):
     return (1/sqrt(2*pi))*exp(-(t**2)/2)
 
-def Fbis(qp):
-    return integrale_simpson(f,qp,10,100)
-#Test of Fbis with the values of the given table
-print(round(Fbis(3.0902),4))
-print(round(Fbis(1.165),4))
-
-
 def F(qp):
-    return 1-integrale_simpson(f,-10, qp, 100)
-#Test of F with the values of the given table
-print(round(F(3.0902),4))
-print(round(F(1.165),4))
+    return integrale_simpson(f,-100, qp, 100)
+
 
 
 #just in case
