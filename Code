@@ -10,8 +10,7 @@ def dichotomie(f, a, b, e):
 
 #Newton
 def Newton(f, df, a, b, e):
-    b= a- f(a)/df(a)
-    while abs(a - b) >= e :
+    while abs(b - a) >= e :
         a, b = b, b - f(b)/df(b)
     return b
 
@@ -47,7 +46,7 @@ def df(x):
 print(df(3))
 
 #Test dichotonomy
-print(dichotomie(f, -3, 6, 100))
+print(dichotomie(f, -3, 6, 0.001))
 
 #Test Newton
 print(Newton(f, df, -3, 6, 100))
