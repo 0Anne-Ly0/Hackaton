@@ -56,3 +56,21 @@ print(integrale_rectangle(f, 3, 10, 55))
 
 #Test simpson
 print(integrale_simpson(f, 3, 10, 55))
+
+#implementation of F
+from math import *
+from math import exp
+
+def F(t,y):
+    return (1/sqrt(2*pi))*exp(-(x**2)/2)
+
+def euler (F, t0, tf, y0, n):
+    h = (tf-t0)/n  # The step
+    T = [t0] # The future subdivision
+    Y = [y0] # The values of the various yi starting with y0
+    for i in range(n):
+        y = Y[-1]+ h* F(T[-1], Y[-1])  # Expression of y_{i+1} as a function of F, h and y_{i}
+        t = t0+ i*h   # Move on to the next t by adding the step
+        T.append(t)
+        Y.append(y)
+    return T, Y
