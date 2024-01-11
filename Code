@@ -8,3 +8,9 @@ def dichotomie(f, a, b, e):
             a = m
     return m
 
+#Newton
+def Newton(f, df, a, b, p):
+    while abs(a - b) >= p :
+        a, b = b, b - f(b)/df(b)
+    return b
+
