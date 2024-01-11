@@ -23,6 +23,8 @@ def integrale_rectangle(f, a, b, n):
     return h*sum
 
 #Simpson
+from sympy import *
+
 def integrale_simpson(f,a,b,n):
     h=(b-a)/n
     sum_mk=0
@@ -36,7 +38,13 @@ def integrale_simpson(f,a,b,n):
         sum_xk+=f(a+k*h)
     
     s =f(a) +f(b)+4*sum_mk +2*sum_xk
-    return h/6 *s
+    
+    df= 0
+    for i in range(6):
+        df= diff(f,x)
+    M= Dichotomie(df, a, b, 0.010)
+    error= (((b-a)**4)*M)/(180*n**4)
+    return h/6 *s, f"The error is {error}"
 
 def g(x):
     return 3*x**2+2*x-1
