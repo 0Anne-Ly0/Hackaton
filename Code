@@ -6,7 +6,7 @@ def dichotomie(f, a, b, e):
             b = m
         else:
             a = m
-    return (a+b)/2
+    return m
 
 #Newton
 def Newton(f, df, a, b, e):
